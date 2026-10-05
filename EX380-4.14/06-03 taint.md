@@ -10,7 +10,7 @@ oc adm taint node master03 node-role.kubernetes.io/master=:NoSchedule
 
 oc patch scheduler cluster --type='json' -p='[{"op": "replace", "path": "/spec/mastersSchedulable", "value": false}]'
 
-oc create deployment test-pod --image=registry.ocp4.example.com:8443/redhattraining/hello-world-nginx:v1.0 --replicas=3
+oc create deployment test-pod-taints --image=registry.ocp4.example.com:8443/redhattraining/hello-world-nginx:v1.0 --replicas=3
 
 ```
 
