@@ -3,6 +3,13 @@
 oc adm taint  nodes worker01 dedicated=app1:NoSchedule
 oc adm taint  nodes worker02 dedicated=app1:NoSchedule
 oc adm taint  nodes worker03 dedicated=app1:NoSchedule
+
+oc adm taint node master01 node-role.kubernetes.io/master=:NoSchedule
+oc adm taint node master02 node-role.kubernetes.io/master=:NoSchedule
+oc adm taint node master03 node-role.kubernetes.io/master=:NoSchedule
+
+oc patch scheduler cluster --type='json' -p='[{"op": "replace", "path": "/spec/mastersSchedulable", "value": false}]'
+
 ```
 
 ### Just for your information: You can also use `kubeclt` command, `kubectl taint node worker03 dedicated=app1:NoSchedule`
